@@ -1,14 +1,17 @@
 import flowers from './data';
+import './style.css';
 
 const Home = () => {
     return (
         <>
-        <div>
-            {flowers.map(flower => {
+        <div class="main">
+            {flowers.map((flower, index) => {
                 return (
                 <>
-                <img src={flower.picture}></img>
-                <h1>{flower.name}</h1>
+                <div className='flwr'>
+                    <img src={flower.picture} style={{width: "90%"}}></img>
+                    <h1 style={{paddingBottom: "20%", textAlign: 'center'}}>{flower.name}</h1>
+                </div>
                 </>
                 )
             })}
