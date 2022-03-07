@@ -1,10 +1,19 @@
-
+import flowers from './data';
 
 const Home = () => {
     return (
+        <>
         <div>
-            <h1>Hello from Home Page</h1>
+            {flowers.map(flower => {
+                return (
+                <>
+                <img src={flower.picture}></img>
+                <h1>{flower.name}</h1>
+                </>
+                )
+            })}
         </div>
+        </>
     );
 }
 
