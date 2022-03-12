@@ -11,15 +11,16 @@ const Menu = (props) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {
-                            props.username ?
+                            props.user ?
+                                <Navbar.Text>
+                                    Hello {props.user}
+                                </Navbar.Text>
+                                :
+
                                 <>
                                     <Nav.Link href="#/register">Register</Nav.Link>
                                     <Nav.Link href="#/login">Login</Nav.Link>
                                 </>
-                                :
-                                <Navbar.Text>
-                                    Hello {props.username}
-                                </Navbar.Text>
                         }
                     </Nav>
                 </Navbar.Collapse>

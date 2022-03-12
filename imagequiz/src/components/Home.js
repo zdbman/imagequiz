@@ -1,21 +1,30 @@
 import flowers from './data';
 import './style.css';
+import Card from 'react-bootstrap/Card'
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 const Home = () => {
     return (
         <>
-        <div class="main">
-            {flowers.map((flower, index) => {
-                return (
-                <>
-                <div className='flwr'>
-                    <img src={flower.picture} style={{width: "90%"}}></img>
-                    <h1 style={{paddingBottom: "20%", textAlign: 'center'}}>{flower.name}</h1>
-                </div>
-                </>
-                )
-            })}
-        </div>
+            <div class="main">
+                <Row xs={1} md={2} className="g-4">
+                    {flowers.map((flower, index) => {
+                        return (
+                            <>
+                                <Col>
+                                    <Card>
+                                        <Card.Body>
+                                            <Card.Img src={flower.picture} variant="top"></Card.Img>
+                                            <Card.Title>{flower.name}</Card.Title>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            </>
+                        )
+                    })}
+                </Row>
+            </div>
         </>
     );
 }

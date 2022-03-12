@@ -17,7 +17,7 @@ function App() {
   const [username, setUsername] = useState('');
   let userLoggedInHnadler = (Username) => {
     setUsername(Username);
-
+    console.log("test")
   }
 
   return (
@@ -31,7 +31,7 @@ function App() {
 
         <Row>
           <Col>
-            <Menu /*user={username}*/ />
+            <Menu user={username} />
           </Col>
         </Row>
 
