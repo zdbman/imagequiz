@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <>
             <div class="main">
-                <Row xs={1} md={2} className="g-4">
+                <Row xs={1} md={2} lg={3} className="g-4">
                     {flowers.map((flower, index) => {
                         return (
                             <>
@@ -16,7 +16,7 @@ const Home = () => {
                                     <Card>
                                         <Card.Body>
                                             <Card.Img src={flower.picture} variant="top"></Card.Img>
-                                            <Card.Title>{flower.name}</Card.Title>
+                                            <Card.Title align="center">{flower.name}</Card.Title>
                                         </Card.Body>
                                     </Card>
                                 </Col>
