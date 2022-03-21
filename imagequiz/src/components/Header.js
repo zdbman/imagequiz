@@ -3,7 +3,7 @@
 const Header = () => {
     return (
         <div>
-            Practium 5: Image Quiz
+            Practium 6: Image Quiz
         </div>
     );
 }

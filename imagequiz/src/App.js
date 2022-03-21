@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
+import Quiz from './components/Quiz';
 //import { Col } from 'react-bootstrap';
 
 
@@ -40,6 +41,9 @@ function App() {
 
           </Route>
           <Route exact path='/login' element={<Login userLoggedIn={userLoggedInHnadler} />}>
+
+          </Route>
+          <Route exact path='/quiz/:id' element={<Quiz />}>
 
           </Route>
           <Route exact path='/' element={<Home />}>

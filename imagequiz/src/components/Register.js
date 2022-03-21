@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import local_temp_store from '../data_access_layer/local_temporarily_storage';
+import dataService from '../data_access_layer/local_temporarily_storage';
 
 
 const Register = () => {
@@ -24,7 +24,7 @@ const Register = () => {
     }
 
     let onSubmitHandler = (e) => {
-        local_temp_store.users.push({username: username, email: email, password: password})
+        dataService.users.push({username: username, email: email, password: password})
         navigate('/login');
     }
 

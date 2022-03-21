@@ -3,7 +3,7 @@
 const Footer = () => {
     return (
         <div>
-            This is my footer
+            Footer of <i>Zachary Halperin</i>
         </div>
     );
 }
