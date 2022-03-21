@@ -11,42 +11,45 @@ import Spinner from "react-bootstrap/Spinner";
 const Quiz = () => {
     const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
     const [quiz, setQuiz] = useState(undefined);
+    const [score, setScore] = useState(0);
+    const [answer, setAnswer] = useState("");
     const { id } = useParams();
 
 
     useEffect(() => {
-        if(!quiz){
+        if (!quiz) {
             let x = dataService.getQuiz(id);
             setQuiz(x);
             console.log(x);
-        } 
+        }
     });
-    
-    var score = 0;
-    
+
     return (
         <Container>
             <Row xs={1} md={2} lg={3} className="g-4">
                 <Col>
-                {quiz ? 
-                    <Card className='h-100'>
-                        <Card.Img variant="top" src={quiz.questions[currentQuestionNumber].picture}></Card.Img>
-                        <Card.Body>
-                            <Card.Title align="center">{quiz.name}</Card.Title>
-                            <Card.Title>
-                                Let's take the quiz now!
-                            </Card.Title>
-                        </Card.Body>
-                        <ListGroup>
-                            {quiz.questions[currentQuestionNumber].choices.map(x =>
-                                <ListGroup.Item>{x}</ListGroup.Item>
-                            )}
-                        </ListGroup>
-                    </Card>
-                    :
-                    <Spinner animation="border" relo="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
+                    {quiz ?
+                        <Card className='h-100'>
+                            <Card.Img variant="top" src={quiz.questions[currentQuestionNumber].picture}></Card.Img>
+                            <Card.Body>
+                                <Card.Title align="center">{quiz.name}</Card.Title>
+                                <Card.Title>
+                                    Let's take the quiz now!
+                                </Card.Title>
+                            </Card.Body>
+                            <ListGroup>
+                                {quiz.questions[currentQuestionNumber].choices.map(x =>
+                                    <ListGroup.Item onClick={() => setAnswer(x)}>{x}</ListGroup.Item>
+                                )}
+                            </ListGroup>
+                            <Card.Title>U clicked {answer}</Card.Title>
+                            <Card.Title>Answer is {quiz.questions[currentQuestionNumber].answer}</Card.Title>
+                            <Card.Title>Ur score: {score}</Card.Title>
+                        </Card>
+                        :
+                        <Spinner animation="border" relo="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
                     }
                 </Col>
             </Row>
