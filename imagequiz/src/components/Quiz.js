@@ -52,6 +52,7 @@ const Quiz = () => {
                                         }
                                         if(currentQuestionNumber < quiz.questions.length-1){
                                             setCurrentQuestionNumber(currentQuestionNumber+=1);
+                                            
                                         }else{
                                             setCurrentQuestionNumber(currentQuestionNumber=0);
                                         }
