@@ -14,6 +14,7 @@ const Quiz = () => {
     let [score, setScore] = useState(0);
     const [answer, setAnswer] = useState("");
     const { id } = useParams();
+    let [again, setAgain] = useState("");
 
     useEffect(() => {
         if (!quiz) {
@@ -30,7 +31,7 @@ const Quiz = () => {
                 <Col>
                     {quiz ?
                         <Card className='h-100'>
-                            <Card.Img variant="top" src={quiz.questions[currentQuestionNumber].picture}></Card.Img>
+                            <Card.Img style={{height: "275px"}} variant="top" src={quiz.questions[currentQuestionNumber].picture}></Card.Img>
                             <Card.Body>
                                 <Card.Title align="center">{quiz.questions[currentQuestionNumber].answer}</Card.Title>
                                 <Card.Title>
@@ -43,18 +44,18 @@ const Quiz = () => {
                                         console.log(x);
                                         setAnswer(x);
                                         if(x == quiz.questions[currentQuestionNumber].answer){
-                                            
                                             console.log('Correct');
-                                            setScore(score+=1);
+                                            setScore(score += 1);
 
                                         }else{
                                             console.log('Incorrect');
                                         }
                                         if(currentQuestionNumber < quiz.questions.length-1){
                                             setCurrentQuestionNumber(currentQuestionNumber+=1);
-                                            
                                         }else{
+                                            setAgain("Play again?")
                                             setCurrentQuestionNumber(currentQuestionNumber=0);
+                                            setScore(score = 0);
                                         }
                                         console.log(currentQuestionNumber);
                                         console.log(score);
@@ -64,8 +65,8 @@ const Quiz = () => {
                             </ListGroup>
                             <Card.Title>U clicked {answer}</Card.Title>
                             <Card.Title>Answer is {quiz.questions[currentQuestionNumber].answer}</Card.Title>
-                            
                             <Card.Title>Ur score: {score}</Card.Title>
+                            <Card.Title>{again}</Card.Title>
                         </Card>
                         :
                         <Spinner animation="border" relo="status">
