@@ -15,6 +15,7 @@ const Quiz = () => {
     const [answer, setAnswer] = useState("");
     const { id } = useParams();
     let [again, setAgain] = useState("");
+    let [test, setTest] = useState(true);
 
     useEffect(() => {
         if (!quiz) {
@@ -43,19 +44,18 @@ const Quiz = () => {
                                     <ListGroup.Item onClick={() => {
                                         console.log(x);
                                         setAnswer(x);
-                                        if(x == quiz.questions[currentQuestionNumber].answer){
+                                        if(x == quiz.questions[currentQuestionNumber].answer && test){
                                             console.log('Correct');
                                             setScore(score += 1);
 
                                         }else{
                                             console.log('Incorrect');
                                         }
-                                        if(currentQuestionNumber < quiz.questions.length-1){
+                                        if(currentQuestionNumber < quiz.questions.length-1 && test){
                                             setCurrentQuestionNumber(currentQuestionNumber+=1);
                                         }else{
+                                            setTest(test = false);
                                             setAgain("Play again?")
-                                            setCurrentQuestionNumber(currentQuestionNumber=0);
-                                            setScore(score = 0);
                                         }
                                         console.log(currentQuestionNumber);
                                         console.log(score);
@@ -63,10 +63,15 @@ const Quiz = () => {
                                     }>{x}</ListGroup.Item>
                                 )}
                             </ListGroup>
-                            <Card.Title>U clicked {answer}</Card.Title>
-                            <Card.Title>Answer is {quiz.questions[currentQuestionNumber].answer}</Card.Title>
-                            <Card.Title>Ur score: {score}</Card.Title>
-                            <Card.Title>{again}</Card.Title>
+                            
+                            <Card.Title>Ur score: {score} / {quiz.questions.length}</Card.Title>
+                            <Card.Title onClick={() => {
+                                console.log("again");
+                                setTest(test = true);
+                                setCurrentQuestionNumber(currentQuestionNumber=0);
+                                setScore(score = 0);
+                                setAgain(again = "");
+                            }} style={{color: "blue"}}>{again}</Card.Title>
                         </Card>
                         :
                         <Spinner animation="border" relo="status">
@@ -78,5 +83,8 @@ const Quiz = () => {
         </Container>
     );
 }
+
+//<Card.Title>U clicked {answer}</Card.Title>
+//<Card.Title>Answer is {quiz.questions[currentQuestionNumber].answer}</Card.Title>
 
 export default Quiz;
