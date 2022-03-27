@@ -35,7 +35,7 @@ const Quiz = () => {
                 <Col>
                     {quiz ?
                         <Card className='h-100'>
-                            <Card.Img style={{height: "275px"}} variant="top" src={quiz.questions[currentQuestionNumber].picture}></Card.Img>
+                            <Card.Img style={{height: "200px"}} variant="top" src={quiz.questions[currentQuestionNumber].picture}></Card.Img>
                             <Card.Body>
                                 <Card.Title align="center">{quiz.questions[currentQuestionNumber].answer}</Card.Title>
                                 <Card.Title>

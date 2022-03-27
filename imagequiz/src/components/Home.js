@@ -25,7 +25,7 @@ const Home = () => {
                             <Col>
                                 <Card className='h-100' onClick={() => takeTheQuiz(flower.name)}>
                                     <Card.Body>
-                                        <Card.Img style={{height: "275px"}} src={flower.picture} variant="top"></Card.Img>
+                                        <Card.Img style={{height: "200px"}} src={flower.picture} variant="top"></Card.Img>
                                         <Card.Title align="center">{flower.name}</Card.Title>
                                         <Card.Title>
                                             
