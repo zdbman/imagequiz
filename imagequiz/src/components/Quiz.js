@@ -58,7 +58,7 @@ const Quiz = () => {
                                             setCurrentQuestionNumber(currentQuestionNumber+=1);
                                         }else{
                                             setTest(test = false);
-                                            setAgain("Play again?")
+                                            setAgain("Play again?");
                                         }
                                         console.log(currentQuestionNumber);
                                         console.log(score);
@@ -66,7 +66,6 @@ const Quiz = () => {
                                     }>{x}</ListGroup.Item>
                                 )}
                             </ListGroup>
-                            
                             <Card.Title>Ur score: {score} / {quiz.questions.length}</Card.Title>
                             <Card.Title><span onClick={() => {
                                 console.log("again");
