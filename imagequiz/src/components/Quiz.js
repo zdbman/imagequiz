@@ -7,6 +7,8 @@ import dataService from "../data_access_layer/local_temporarily_storage";
 import { useEffect, useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Spinner from "react-bootstrap/Spinner";
+import { useNavigate } from 'react-router-dom';
+
 
 const Quiz = () => {
     let [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
@@ -16,6 +18,7 @@ const Quiz = () => {
     const { id } = useParams();
     let [again, setAgain] = useState("");
     let [test, setTest] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!quiz) {
@@ -65,13 +68,15 @@ const Quiz = () => {
                             </ListGroup>
                             
                             <Card.Title>Ur score: {score} / {quiz.questions.length}</Card.Title>
-                            <Card.Title onClick={() => {
+                            <Card.Title><span onClick={() => {
                                 console.log("again");
                                 setTest(test = true);
                                 setCurrentQuestionNumber(currentQuestionNumber=0);
                                 setScore(score = 0);
                                 setAgain(again = "");
-                            }} style={{color: "blue"}}>{again}</Card.Title>
+                            }} style={{color: "blue"}}>{again}</span>    <span onClick={() => {
+                                navigate('/');
+                            }}>Back to Menu?</span></Card.Title>
                         </Card>
                         :
                         <Spinner animation="border" relo="status">
