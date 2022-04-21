@@ -10,6 +10,9 @@ let dataService = {
     getQuiz: (name) => {
         let quiz = data.find(flower => flower.name.toLowerCase() === name.toLowerCase());
         return quiz;
+    },
+    addCustomer: (name, email, password) => {
+        
     }
 }
 
