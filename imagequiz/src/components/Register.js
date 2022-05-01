@@ -24,6 +24,7 @@ const Register = () => {
     }
 
     let onSubmitHandler = (e) => {
+<<<<<<< HEAD
         e.preventDefault();
         apiAccess.addCustomer(username, email, password)
             .then(x => {
@@ -35,6 +36,9 @@ const Register = () => {
                 alert('Registeration Failed');
             });
         dataService.users.push({username: username, email: email, password: password})
+=======
+        apiAccess.addCustomer(username, email, password);
+>>>>>>> parent of c7cc345... update
         navigate('/login');
     }
 

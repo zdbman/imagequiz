@@ -2,23 +2,22 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-//import dataService from '../data_access_layer/local_temporarily_storage';
-import apiAccess from '../communication/APIAccess';
+import dataService from '../data_access_layer/local_temporarily_storage';
 
 
 const Login = (props) => {
-    //const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    //const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    /*let onNameChange = (e) => {
+    let onNameChange = (e) => {
         setUsername(e.target.value);
-    }*/
-
-    let onEmailChange = (e) => {
-        setEmail(e.target.value);
     }
+
+    /*let onEmailChange = (e) => {
+        setEmail(e.target.value);
+    }*/
 
     let onPasswordChange = (e) => {
         setPassword(e.target.value);
@@ -26,26 +25,21 @@ const Login = (props) => {
 
     let onSubmitHandler = (e) => {
         e.preventDefault();
-        apiAccess.login(email, password)
-        .then(x => {
-            if(x.done){
-                props.userLoggedIn(email);
-                navigate('/');
-            }else{
-                alert("Invalid Credentials");
-            }
-        })
-        .catch(e => {
-            console.log(e);
-            alert('Something went wrong.');
-        });
+        let found = dataService.users.find(x => 
+            (x.username.toLowerCase() === username.toLowerCase()) && x.password === password);
+        if(found){
+            props.userLoggedIn(username)
+            navigate('/');
+        }else{
+            alert("The credentials are not valid!");
+        }   
     }
 
     return (
         <Form onSubmit={onSubmitHandler}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="text" placeholder="Enter Username" value={email} onChange={onEmailChange} />
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter Username" value={username} onChange={onNameChange} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>

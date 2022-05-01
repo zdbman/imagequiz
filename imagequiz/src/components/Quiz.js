@@ -3,12 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-//import dataService from "../data_access_layer/local_temporarily_storage";
+import dataService from "../data_access_layer/local_temporarily_storage";
 import { useEffect, useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from 'react-router-dom';
-import apiAccess from '../communication/APIAccess';
 
 
 const Quiz = () => {
@@ -23,16 +22,12 @@ const Quiz = () => {
 
     useEffect(() => {
         if (!quiz) {
-            apiAccess.getQuiz(id)
-            .then( x => {
-                setQuiz(x);
-                console.log(x);
-            });
+            let x = dataService.getQuiz(id);
+            setQuiz(x);
+            console.log(x);
         }
-       
-    }, []
-    
-    );
+        
+    });
 
     return (
         <Container>
@@ -48,7 +43,7 @@ const Quiz = () => {
                                 </Card.Title>
                             </Card.Body>
                             <ListGroup>
-                                {quiz.questions[currentQuestionNumber].choices.split(',').map(x =>
+                                {quiz.questions[currentQuestionNumber].choices.map(x =>
                                     <ListGroup.Item onClick={() => {
                                         console.log(x);
                                         setAnswer(x);

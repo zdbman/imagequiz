@@ -10,6 +10,12 @@ let dataService = {
     getQuiz: (name) => {
         let quiz = data.find(flower => flower.name.toLowerCase() === name.toLowerCase());
         return quiz;
+<<<<<<< HEAD
+=======
+    },
+    addCustomer: (name, email, password) => {
+        
+>>>>>>> parent of c7cc345... update
     }
 }
 
