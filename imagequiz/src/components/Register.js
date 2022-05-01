@@ -24,8 +24,16 @@ const Register = () => {
     }
 
     let onSubmitHandler = (e) => {
-        apiAccess.addCustomer(username, email, password);
-        navigate('/login');
+        e.preventDefault();
+        apiAccess.addCustomer(username, email, password)
+            .then(x => {
+                navigate('/login');
+                console.log(`Registeration Successfull (${username}, ${email}, ${password})`);
+            })
+            .catch(e => {
+                console.log(e);
+                alert('Registeration Failed');
+            });
     }
 
     return (
