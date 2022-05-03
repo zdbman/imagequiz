@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import dataService from '../data_access_layer/local_temporarily_storage';
+import apiAccess from '../communication/APIAccess';
 
 
 const Register = () => {
@@ -24,7 +24,6 @@ const Register = () => {
     }
 
     let onSubmitHandler = (e) => {
-<<<<<<< HEAD
         e.preventDefault();
         apiAccess.addCustomer(username, email, password)
             .then(x => {
@@ -35,11 +34,6 @@ const Register = () => {
                 console.log(e);
                 alert('Registeration Failed');
             });
-        dataService.users.push({username: username, email: email, password: password})
-=======
-        apiAccess.addCustomer(username, email, password);
->>>>>>> parent of c7cc345... update
-        navigate('/login');
     }
 
     return (
